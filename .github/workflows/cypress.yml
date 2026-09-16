@@ -20,11 +20,14 @@ jobs:
         with:
           node-version: '22'
           cache: 'npm'
+          cache-dependency-path: atividade-cypress/package-lock.json
 
       - name: Instalar dependencias
+        working-directory: atividade-cypress
         run: npm ci
 
       - name: Executar testes Cypress
+        working-directory: atividade-cypress
         run: npm test
 
       - name: Salvar evidencias em caso de falha
@@ -33,6 +36,6 @@ jobs:
         with:
           name: evidencias-cypress
           path: |
-            cypress/screenshots
-            cypress/videos
+            atividade-cypress/cypress/screenshots
+            atividade-cypress/cypress/videos
           if-no-files-found: ignore
